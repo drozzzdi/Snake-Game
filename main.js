@@ -7,7 +7,6 @@ canvas.height=500;
 const cw=canvas.width;
 const ch=canvas.height;
 
-let snakeLength=20;
 const snakeWidth=20;
 let snakeX=100;
 let snakeY=80;
@@ -22,9 +21,7 @@ let apple1X=400;
 let apple1Y=200;
 let apple2X=600;
 let apple2Y=400;
-
 let points=60;
-
 
 function gameBoard(){
     ctx.fillStyle='lightgray';
@@ -44,32 +41,28 @@ function gameOver(){
 
 function bodySnakeGame(){
 
-    snakeCenterX=snakeX+snakeLength/4;
+    snakeCenterX=snakeX+snakeWidth/4;
     snakeCenterY=snakeY+snakeWidth/4;
-
     snakeBody.push({snakeCenterX, snakeCenterY});
-    
     
     if(snakeBody.length>points){
         snakeBody.splice(0,1);
     }
-    
     for(let i=10; i<points; i+=15)
     {
     ctx.fillStyle='#0066FF';
-    ctx.fillRect(snakeBody[i].snakeCenterX,snakeBody[i].snakeCenterY,snakeLength/2,snakeWidth/2);
+    ctx.fillRect(snakeBody[i].snakeCenterX,snakeBody[i].snakeCenterY,snakeWidth/2,snakeWidth/2);
     }
 
-if(snakeBody.filter(square=>square.snakeCenterX===snakeBody[snakeBody.length-1].snakeCenterX 
-   && square.snakeCenterY===snakeBody[snakeBody.length-2].snakeCenterY ).length>=2){
-       //game over
+    if(snakeBody.filter(square=>square.snakeCenterX===snakeBody[snakeBody.length-1].snakeCenterX 
+     && square.snakeCenterY===snakeBody[snakeBody.length-2].snakeCenterY ).length>=2){
       gameOver()
     }
-    }
+}
 
 function snake(){
     ctx.fillStyle='#0066FF';
-    ctx.fillRect(snakeX,snakeY,snakeLength,snakeWidth);
+    ctx.fillRect(snakeX,snakeY,snakeWidth,snakeWidth);
     
     snakeX+=snakeSpeedX;
     snakeY+=snakeSpeedY;
@@ -123,7 +116,6 @@ function apple(){
             && square.snakeCenterY+appleSize>=apple2Y
             && square.snakeCenterY<=apple2Y+appleSize).length>0);
        }    
-    
        pointsCounter.textContent=`Eaten apples: ${(points/60)-1}`;
     }
 
@@ -159,10 +151,10 @@ function snakePosition(e){
 window.addEventListener('keyup',snakePosition);
 
 function game(){
-gameBoard();
-snake();
-apple();
-bodySnakeGame();
+    gameBoard();
+    snake();
+    apple();
+    bodySnakeGame();
 }
 
 setInterval(game, 1000/60);
