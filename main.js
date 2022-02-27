@@ -50,7 +50,7 @@ function bodySnakeGame(){
     }
     for(let i=10; i<points; i+=15)
     {
-    ctx.fillStyle='#0066FF';
+    ctx.fillStyle='#102410';
     ctx.fillRect(snakeBody[i].snakeCenterX,snakeBody[i].snakeCenterY,snakeWidth/2,snakeWidth/2);
     }
 
@@ -61,7 +61,7 @@ function bodySnakeGame(){
 }
 
 function snake(){
-    ctx.fillStyle='#0066FF';
+    ctx.fillStyle='#102410';
     ctx.fillRect(snakeX,snakeY,snakeWidth,snakeWidth);
     
     snakeX+=snakeSpeedX;
